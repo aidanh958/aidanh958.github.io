@@ -1,7 +1,103 @@
 <!DOCTYPE html>
 <html>
+<style>
+body {
+	display: block;
+    margin-left: auto;
+    margin-top: auto;
+    width: 50%;
+    text-align: center;
+}
+#code {
+	text-align: left;
+    background-color: black;
+    color: white;
+    border-radius: 10;
+    width: 300px;
+    height: 400px;
+}
+canvas {
+	border: 1px solid black;
+}
+</style>
 <body>
 
+<div>
+<h1><u>How to Create a Terrain Generator using Javascript and HTML5</u></h1>
+
+First you will need to create and define the canvas.
+<textarea id='code' wrap='off' disabled>
+
+<canvas></canvas>
+<script>
+var c = document.getElementsByTagName('canvas')[0]; // get canvas
+var ctx = c.getContext('2d'); // define drawing tool
+</script>
+
+</textarea>
+
+Next you fill need to create a difference and a persistance variable and do a loop to define points.
+
+<textarea id='code' wrap='off' disabled>
+
+<canvas></canvas>
+<script>
+var c = document.getElementsByTagName('canvas')[0]; // get canvas
+var ctx = c.getContext('2d'); // define drawing tool
+
+var terr = [];
+
+var dif = 5;
+var per = 10;
+for (i = 0; i < (c.width / 10); i++) {
+	terr.push(
+    	{
+        	x: i * 10,
+            y: (Math.random() * dif) + per
+        };
+    );
+};
+</script>
+</div>
+
+</textarea>
+
+finally you will need to loop through the points and fill them.
+
+<textarea id='code' wrap='off' disabled>
+
+<canvas></canvas>
+<script>
+var c = document.getElementsByTagName('canvas')[0]; // get canvas
+var ctx = c.getContext('2d'); // define drawing tool
+
+var terr = [];
+
+var dif = 5;
+var per = 10;
+for (i = 0; i < (c.width / 10); i++) {
+	terr.push(
+    	{
+        	x: i * 10,
+            y: (Math.random() * dif) + per
+        };
+    );
+};
+
+ctx.beginPath();
+ctx.moveTo(0, c.height);
+terr.forEach(p => {
+	ctx.lineTo(p.x, p.y);
+});
+ctx.lineTo(c.width, c.height);
+ctx.closePath();
+ctx.fill();
+</script>
+</div>
+
+</textarea>
+
+Then you should hopefully get a result like this:
 <canvas></canvas>
 
 </body>
@@ -22,8 +118,6 @@ var ctx = c.getContext('2d') // define context
 
 c.width = 500; // define canvas width
 c.height = 400; // define canvas height
-
-var myLeft = 20, myTop = 20; // define player posisions
 
 var dif = 5; // define difference
 var per = 20; // define persistance
