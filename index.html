@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas></canvas>
+
+</body>
+<script>
+
+// how to make terrain generator
+
+/* 
+change dif variable for rocky effects
+change per varibale to move terrain up or down
+
+*/
+
+
+
+var c = document.getElementsByTagName('canvas')[0]; // define canvas
+var ctx = c.getContext('2d') // define context
+
+c.width = 500; // define canvas width
+c.height = 400; // define canvas height
+
+var myLeft = 20, myTop = 20; // define player posisions
+
+var dif = 5; // define difference
+var per = 20; // define persistance
+
+var terr = []; // define terr as array
+for (i = 0; i < c.width / 10; i++) { // basic for loop
+	terr.push( // push new object to array
+    	{
+        	x: i * (c.width / 10), // set x
+            y: (Math.random() * dif) + per,
+            /* 
+            	dif = difference;
+                per = persistance;
+        	*/
+        }
+    )
+}
+    
+    ctx.beginPath(); // begin path
+    ctx.moveTo(0, c.height); // move to first pos
+    terr.forEach(p => { // loop through terr array
+    	ctx.lineTo(p.x, c.height - p.y); // line to the position
+    });
+    ctx.lineTo(c.width, c.height); // line to bottom right corner
+    ctx.closePath(); // move to first move
+    ctx.fill(); // fill inside of path
+</script>
+</html>
